@@ -2,6 +2,7 @@ services:
   - type: web
     name: java-springboot-app
     runtime: docker
+    dockerfilePath: ./Dockerfile
     repo: https://github.com/adiisunlay/Java-with-SpringBoot
     branch: main
     dockerfilePath: ./Dockerfile
