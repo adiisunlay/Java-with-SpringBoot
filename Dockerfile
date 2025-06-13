@@ -1,11 +1,20 @@
-# Use OpenJDK 17 as base image
-FROM openjdk:17-jdk-slim
+# 1. Base image with JDK and Maven
+FROM maven:3.9.6-eclipse-temurin-17 AS build
 
-# Set working directory
+# 2. Copy project files
+WORKDIR /app
+COPY . .
+
+# 3. Build JAR file using Maven
+RUN mvn clean package -DskipTests
+
+# 4. Create actual runtime image
+FROM eclipse-temurin:17-jdk
+
 WORKDIR /app
 
-# Copy JAR file (update if needed)
-COPY target/*.jar app.jar
+# 5. Copy JAR from build stage
+COPY --from=build /app/target/*.jar app.jar
 
-# Run the app
+# 6. Run the Spring Boot application
 ENTRYPOINT ["java", "-jar", "app.jar"]
