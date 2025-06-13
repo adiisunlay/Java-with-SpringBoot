@@ -18,7 +18,7 @@ databases:
   - name: mydb
     databaseName: mydb
     user: admin
-    plan: standard                
+    plan: standard-1                
     ipAllowList:
       - source: 0.0.0.0/0
         description: allow all
