@@ -15,7 +15,10 @@ services:
           property: connectionString
 
 databases:
-  - name: your-database-name
+  - name: mydb
     databaseName: mydb
     user: admin
-    plan: starter
+    plan: starter-plus                
+    ipAllowList:
+      - source: 0.0.0.0/0
+        description: allow all
